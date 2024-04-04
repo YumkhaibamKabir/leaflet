@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Leaflet Map</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    /* Height of the map container */
+    #map {
+      height: 450px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Container for the map -->
+  <div id="map"></div>
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script>
+    // Initializing the map
+    var map = L.map('map').setView([27.175, 78.042], 15); // Coordinates and zoom level
+
+    // Adding a tile layer (base map)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Adding markers
+    var tajMahalMarker = L.marker([27.175, 78.042]).addTo(map); // Coordinates for the marker
+    tajMahalMarker.bindPopup("<b>Taj Mahal</b><br>Seven Wonders of the World."); // Add a popup to the marker
+
+    var shahJahanGardenMarker = L.marker([27.174, 78.026]).addTo(map); // Coordinates for the marker
+    shahJahanGardenMarker.bindPopup("<b>Shah Jahan Garden</b><br>Beautiful Garden."); // Add a popup to the marker
+
+    // Add hover effect to markers
+    tajMahalMarker.on('mouseover', function(e) {
+      this.openPopup();
+    });
+    tajMahalMarker.on('mouseout', function(e) {
+      this.closePopup();
+    });
+
+    shahJahanGardenMarker.on('mouseover', function(e) {
+      this.openPopup();
+    });
+    shahJahanGardenMarker.on('mouseout', function(e) {
+      this.closePopup();
+    });
+  </script>
+
+</body>
+</html>
