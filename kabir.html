@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet with ArcGIS Online Feature Layer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet"></script> <!-- Including the Esri plugin library -->
+<script>
+    var map = L.map('map').setView([50.434, -104.625], 5); // Setting coordinates and zoom level
+
+    // Add ArcGIS Online basemap
+    L.esri.basemapLayer('Topographic').addTo(map);
+
+    // Adding ArcGIS Online hosted feature layer
+    var featureLayerUrl = 'https://services9.arcgis.com/RHVPKKiFTONKtxq3/ArcGIS/rest/services/USGS_Seismic_Data_v1/FeatureServer/0';
+    var featureLayer = L.esri.featureLayer({
+        url: featureLayerUrl
+    }).addTo(map);
+</script>
+
+</body>
+</html>
